@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Up::Application.load_tasks
+Atakum::Application.load_tasks

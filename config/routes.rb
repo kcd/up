@@ -1,58 +1,106 @@
-Up::Application.routes.draw do
-  # The priority is based upon order of creation:
-  # first created -> highest priority.
+Atakum::Application.routes.draw do
 
-  # Sample of regular route:
-  #   match 'products/:id' => 'catalog#view'
-  # Keep in mind you can assign values other than :controller and :action
+  get "instituterequests/index"
 
-  # Sample of named route:
-  #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
-  # This route can be invoked with purchase_url(:id => product.id)
+  get "students/index"
 
-  # Sample resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
+  get "institutes/index"
 
-  # Sample resource route with options:
-  #   resources :products do
-  #     member do
-  #       get 'short'
-  #       post 'toggle'
-  #     end
-  #
-  #     collection do
-  #       get 'sold'
-  #     end
-  #   end
+  get "roles/index"
 
-  # Sample resource route with sub-resources:
-  #   resources :products do
-  #     resources :comments, :sales
-  #     resource :seller
-  #   end
+  get "admins/index"
 
-  # Sample resource route with more complex sub-resources
-  #   resources :products do
-  #     resources :comments
-  #     resources :sales do
-  #       get 'recent', :on => :collection
-  #     end
-  #   end
+  get "admin/index"
 
-  # Sample resource route within a namespace:
-  #   namespace :admin do
-  #     # Directs /admin/products/* to Admin::ProductsController
-  #     # (app/controllers/admin/products_controller.rb)
-  #     resources :products
-  #   end
+  get "institute/index"
 
-  # You can have the root of your site routed with "root"
-  # just remember to delete public/index.html.
-  # root :to => 'welcome#index'
+  root :to => 'home#index'
 
-  # See how all your routes lay out with "rake routes"
+  #match "/auth/:provider/callback" => "admin#google_create"
 
-  # This is a legacy wild controller route that's not recommended for RESTful applications.
-  # Note: This route will make all actions in every controller accessible via GET requests.
-  # match ':controller(/:action(/:id))(.:format)'
+  match "home" => "home#index"
+  match "about" => "home#about"
+  match "contact" => "home#contact"
+
+  get  'home/register'
+  post 'home/register_save'
+  
+  get   'home/pro_adv'
+  get   'home/pro_doc'
+  get  'home/institute_register'
+  post 'home/institute_register_save'
+  get  "dynamic_districts/:id" => "home#dynamic_districts"
+
+  match "/admin" => "admin#index"
+  get  'admin/login'
+  get  'admin/logout'
+  post 'admin/sign_in'
+
+  namespace :admin do
+    get  'support'
+    get  'personal'
+    post 'personal_save'
+    get  'statistic'
+
+    resources :roles do
+      get :destroy
+      get :confirm
+    end
+    post "roles/update"
+
+    resources :institutes do
+      get :destroy
+      get :confirm
+    end
+    
+    resources :instituterequests do
+      get :destroy
+      get :confirm
+    end
+    post "instituterequests/update"
+
+    resources :admins do
+      get :destroy
+    end
+    post "admins/update"
+
+    resources :students do
+      get :destroy
+    end
+    post "students/update"
+
+  end
+
+  match "user" => "user#index"
+  namespace :user do
+    get   "logout"
+    get   "login"
+    post  "sign_in"
+    get   'personal'
+    post  'personal_save'
+    get   'password'
+    post  'password_save'
+    get   'support'
+    get   'institutes'
+  end
+
+  match "institute" => "institute#index"
+  match "institute/student/:id" => "institute#student"
+  namespace :institute do
+    get   "logout"
+    get   "login"
+    post  "sign_in"
+    get   'personal'
+    post  'personal_save'
+    get   'password'
+    post  'password_save'
+    get   'query'
+    post  'update'
+    get   'request'
+    post  'request_save'
+    get   'support'
+    get   'querypdf'
+  end
+
 end
+
