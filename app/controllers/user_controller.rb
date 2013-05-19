@@ -85,4 +85,34 @@ class UserController < ApplicationController
   def institute_register
   end
 
+  def files
+    if file_id = params[:student_file_id]
+      if params[:download] == 'true'
+        file = StudentFile.find(file_id)
+
+        send_file(
+          file.file.path,
+          :disposition => 'attachment',
+          :filename => "#{file.name}#{File.extname(file.file.to_s).downcase}"
+        )
+      elsif params[:destroy] == 'true'
+        StudentFile.find(file_id).destroy
+        flash[:notice] = "Dosya silindi"
+        redirect_to user_files_path
+      end
+    elsif request.post?
+      file = StudentFile.new(params[:student_file])
+      if file.save
+        file.update_attributes(:file => "#{file.id}#{file.file}")
+        flash[:notice] = "Dosya kaydedildi"
+      else
+        flash[:error] = "Dosya kaydedilemedi. Lütfen tekrar deneyin."
+      end
+
+      redirect_to user_files_path
+    end
+
+    @student_files = StudentFile.where(student_id: session[:userinfo].id)
+  end
+
 end

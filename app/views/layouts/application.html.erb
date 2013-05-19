@@ -74,16 +74,14 @@
 
       <div class="content">
         <div class="row">
-          <div class="span9">
-            <% [:notice, :error, :alert].each do |level| %>
-              <% unless flash[level].blank? %>
-                <div data-alert="alert" class="alert alert-<%= level %> fade in">
-                  <a class="close" data-dismiss="alert" href="#">&times;</a>
-                  <%= content_tag :p, simple_format(flash[level]) %>
-                </div>
-              <% end %>
+          <% [:notice, :error, :alert].each do |level| %>
+            <% unless flash[level].blank? %>
+              <div data-alert="alert" class="alert alert-<%= level %> fade in">
+                <a class="close" data-dismiss="alert" href="#">&times;</a>
+                <%= content_tag :p, simple_format(flash[level]) %>
+              </div>
             <% end %>
-          </div>
+          <% end %>
         </div>
       </div>
 
