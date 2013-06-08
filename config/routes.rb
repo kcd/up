@@ -1,22 +1,15 @@
 Atakum::Application.routes.draw do
 
-  get "instituterequests/index"
-
-  get "students/index"
-
-  get "institutes/index"
-
-  get "roles/index"
-
-  get "admins/index"
-
-  get "admin/index"
-
-  get "institute/index"
-
   root :to => 'home#index'
 
-  #match "/auth/:provider/callback" => "admin#google_create"
+  get "probationlocations/index"
+  get "instituterequests/index"
+  get "students/index"
+  get "institutes/index"
+  get "roles/index"
+  get "admins/index"
+  get "admin/index"
+  get "institute/index"
 
   match "home" => "home#index"
   match "about" => "home#about"
@@ -25,17 +18,16 @@ Atakum::Application.routes.draw do
   get  'home/register'
   post 'home/register_save'
 
-  get   'home/pro_adv'
-  get   'home/pro_doc'
+  get  'home/pro_adv'
+  get  'home/pro_doc'
   get  'home/institute_register'
   post 'home/institute_register_save'
   get  "dynamic_districts/:id" => "home#dynamic_districts"
 
-
   get 'login' => "home#login"
   post 'login' => "home#login"
   get  "logout" => "home#logout"
-
+  match "/auth/:provider/callback" => "home#google_create"
 
   match "/admin" => "admin#index"
 
@@ -62,6 +54,12 @@ Atakum::Application.routes.draw do
     end
     post "instituterequests/update"
 
+    resources :probationlocations do
+      get :destroy
+      get :confirm
+    end
+    post "probationlocations/update"
+
     resources :admins do
       get :destroy
     end
@@ -84,6 +82,8 @@ Atakum::Application.routes.draw do
     get   'institutes'
     get   'files'
     post  'files'
+    get   'location'
+    post  'location_save'
   end
 
   match "institute" => "institute#index"
