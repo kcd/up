@@ -1,21 +1,21 @@
-Rails uygulasını çalıştırmak için aşağıdaki adımları uygulayın:
+- Rails uygulasını çalıştırmak için aşağıdaki adımları uygulayın:
 
-$ git clone git@github.com:kcd/atakum.git
+	$ git clone git@github.com:kcd/atakum.git
 
-$ cd atakum
+	$ cd atakum
 
-$ bundle install --without production
+	$ bundle install --without production
 
-$ mkdb staj staj
+	$ mkdb staj staj
 
-$ rake db:drop
+	$ rake db:drop
 
-$rake db:create
+	$rake db:create
 
-$ rake db:migrate
+	$ rake db:migrate
 
-$ rake db:seed
+	$ rake db:seed
 
-$ rails db -p < db/city-district-list.sql
+	$ rails db -p < db/city-district-list.sql
 
 Daha sonra tarayıcınıza http://0.0.0.0:3000/ yazıp görüntüleyebilirsiniz.
