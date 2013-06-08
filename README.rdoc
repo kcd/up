@@ -1,21 +1,31 @@
-- Rails uygulasını çalıştırmak için aşağıdaki adımları uygulayın:
+Rails uygulasını çalıştırmak için aşağıdaki adımları uygulayın:
 
-	$ git clone git@github.com:kcd/atakum.git
+- Repo bilgisayara clonlanır. 
 
-	$ cd atakum
+$ git clone git@github.com:kcd/atakum.git 
 
-	$ bundle install --without production
+- 'atakum' dizinine gidilir.
 
-	$ mkdb staj staj
+$ cd atakum
 
-	$ rake db:drop
+- Gemfile 'da bulunan gemler aktive edilir.
 
-	$rake db:create
+$ bundle install --without production
 
-	$ rake db:migrate
+- Sistemde varolan veritabanı silinir yenisi oluşturulur
 
-	$ rake db:seed
+$ mkdb staj staj
 
-	$ rails db -p < db/city-district-list.sql
+$ rake db:drop
+
+$ rake db:create
+
+$ rake db:migrate
+
+$ rake db:seed
+
+- İl ve ilçe kayıtları sisteme aktarılmalıdır.
+
+$ rails db -p < db/city-district-list.sql
 
 Daha sonra tarayıcınıza http://0.0.0.0:3000/ yazıp görüntüleyebilirsiniz.
