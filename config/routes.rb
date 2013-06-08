@@ -92,8 +92,11 @@ Atakum::Application.routes.draw do
     get   'institutes'
     get   'files'
     post  'files'
+<<<<<<< HEAD
     get   'location'
     post  'location_save'
+=======
+>>>>>>> 5a2ea58ba920164757263826d893cb3c4ddb08f8
   end
 
   match "institute" => "institute#index"
