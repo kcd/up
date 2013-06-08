@@ -12,7 +12,7 @@ $ cd atakum
 
 $ bundle install --without production
 
-- Sistemde varolan veritabanı silinir yenisi oluşturulur
+- Sistemde varolan veritabanı silinir yenisi oluşturulur.
 
 $ mkdb staj staj
 
